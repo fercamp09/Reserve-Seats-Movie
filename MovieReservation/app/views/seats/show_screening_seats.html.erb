@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Seats for <%= @screening.id %></h1>
+
+<%= render 'table'%>
+
+<br>
+
+<%= link_to 'New Seat', new_seat_path, class: 'btn btn-default' %>

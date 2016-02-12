@@ -1,0 +1,29 @@
+<table class="table table-striped table-hover">
+  <thead>
+  <tr>
+    <th>Asiento ID</th>
+    <th>Row</th>
+    <th>Column</th>
+    <th>Estado</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @seats.each do |seat| %>
+      <tr>
+        <td><%= seat.id %></td>
+        <td><%= seat.row %></td>
+        <td><%= seat.column %></td>
+        <td><% if Reservation.exists?({seat_id: seat.id, screening_id: @screening.id}) then %>
+              <p class="reservado">Reservado</p>
+              <%= link_to 'Liberar?', eliminar_reserva_url({screening_id: @screening.id, id: seat.id})%>
+            <% else %>
+              <%= link_to 'Reservar', reservar_asiento_url({screening_id: @screening.id, id: seat.id}), class: 'libre' %>
+            <% end %></td>
+        <td><%= link_to 'Show', seat %></td>
+        <td><%= link_to 'Edit', edit_seat_path(seat) %></td>
+        <td><%= link_to 'Destroy', seat, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

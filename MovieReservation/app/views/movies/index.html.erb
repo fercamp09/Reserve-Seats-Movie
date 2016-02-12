@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Available Movies</h1>
+
+<div class="container">
+  <div id="mine" class="container-fluid flex-container ">
+        <div id="mine" class="container-fluid flex-container ">
+          <% @movies.each do |movie| %>
+                  <div class="flex-item thumbnail list_image">
+                    <%= link_to movies_screenings_url(movie_name: movie.name,movie_id: movie.id) do %>
+                        <%= image_tag(movie.image_url, class: 'list_image') %>
+                    <% end %>
+                  </div>
+              <% end %>
+        </div>
+  </div>
+
+  <div id="btn-holder">
+
+  </div>
+</div>
+<br>
+
+<%= link_to 'New Movie', new_movie_path, class: 'btn btn-default' %>
